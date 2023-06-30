@@ -43,6 +43,22 @@ class RegisterScreen: UIView {
         return image
     }()
     
+    lazy var nameTextField: UITextField = {
+        let tf = UITextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.autocorrectionType = .no
+        tf.backgroundColor = .white
+        tf.borderStyle = .roundedRect
+        tf.keyboardType = .emailAddress
+        tf.placeholder = "Digite seu nome"
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.layer.cornerRadius = 7.5
+        tf.layer.borderWidth = 1
+        tf.layer.borderColor =  UIColor(red: 3/255, green: 58/255, blue: 51/255, alpha: 1.0).cgColor
+        tf.textColor = .darkGray
+        return tf
+    }()
+    
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -95,6 +111,7 @@ class RegisterScreen: UIView {
     }
     
     public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
+        nameTextField.delegate = delegate
         emailTextField.delegate = delegate
         passwordTextField.delegate = delegate
     }
@@ -127,6 +144,7 @@ class RegisterScreen: UIView {
     private func setupView() {
         addSubview(imageAddUser)
         addSubview(backButton)
+        addSubview(nameTextField)
         addSubview(emailTextField)
         addSubview(passwordTextField)
         addSubview(registerButton)
@@ -149,7 +167,6 @@ class RegisterScreen: UIView {
             make.width.equalTo(150)
             make.height.equalTo(150)
         }
-        
     }
     
     func configBackButtonConstraints() {
@@ -159,9 +176,18 @@ class RegisterScreen: UIView {
         }
     }
     
+    func configNameTextFieldConstraints() {
+        nameTextField.snp.makeConstraints { make in
+            make.top.equalTo(imageAddUser.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().inset(15)
+            make.height.equalTo(40)
+        }
+    }
+    
     func configEmailTextFieldConstraints() {
         emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(imageAddUser.snp.bottom).offset(30)
+            make.top.equalTo(nameTextField.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().inset(15)
             make.height.equalTo(40)

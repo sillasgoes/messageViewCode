@@ -15,7 +15,6 @@ struct CustomColor {
     static let appPink: UIColor = UIColor(red: 255/255, green: 0/255, blue: 136/255, alpha: 1)
 }
 
-
 struct CustomFont {
     static let poppinsMedium = "Poppins-Medium"
     static let poppinsBold = "Poppins-Bold"

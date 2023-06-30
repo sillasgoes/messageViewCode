@@ -29,12 +29,3 @@ struct Utils {
         }
     }
 }
-
-extension UIImageView {
-
-   func setRounded() {
-      let radius = CGRectGetWidth(self.frame) / 2
-      self.layer.cornerRadius = radius
-      self.layer.masksToBounds = true
-   }
-}

@@ -47,9 +47,9 @@ class NavView: UIView {
     lazy var searchBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = CustomColor.appLight
+        view.layer.cornerRadius = 6
         view.clipsToBounds = true
-        view.layer.cornerRadius = 20
+        view.backgroundColor = CustomColor.appLight
         return view
     }()
     
@@ -81,7 +81,7 @@ class NavView: UIView {
     lazy var conversationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "message")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.setImage(UIImage(systemName: "message")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.addTarget(self, action: #selector(tappedConversation), for: .touchUpInside)
         return button
     }()
@@ -89,14 +89,14 @@ class NavView: UIView {
     lazy var contactButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "message"), for: .normal)
+        button.setImage(UIImage(named: "group")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.addTarget(self, action: #selector(tappedContactButton), for: .touchUpInside)
         return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubView()
+        addElemented()
         configConstraints()
     }
     
@@ -116,15 +116,46 @@ class NavView: UIView {
         self.delegate?.typeScreenMessage(type: .contact)
     }
     
-    func addSubView() {
+    func addElemented() {
         addSubview(backgroundView)
-        addSubview(navBar)
-        addSubview(searchBar)
-        addSubview(searchLabel)
+        backgroundView.addSubview(navBar)
+        navBar.addSubview(searchBar)
+        navBar.addSubview(stackView)
+        stackView.addArrangedSubview(conversationButton)
+        stackView.addArrangedSubview(contactButton)
+        searchBar.addSubview(searchLabel)
+        searchBar.addSubview(searchButton)
     }
     
     func configConstraints() {
         NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            navBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            navBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            navBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+            navBar.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            searchBar.leadingAnchor.constraint(equalTo: navBar.leadingAnchor, constant: 30),
+            searchBar.centerYAnchor.constraint(equalTo: navBar.centerYAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -20),
+            searchBar.heightAnchor.constraint(equalToConstant: 55),
+            
+            stackView.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: -30),
+            stackView.centerYAnchor.constraint(equalTo: navBar.centerYAnchor),
+            stackView.widthAnchor.constraint(equalToConstant: 100),
+            stackView.heightAnchor.constraint(equalToConstant: 30),
+                        
+            searchLabel.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor, constant: 25),
+            searchLabel.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor),
+            
+            searchButton.trailingAnchor.constraint(equalTo: searchLabel.trailingAnchor, constant: 40),
+            searchButton.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor),
+            searchButton.widthAnchor.constraint(equalToConstant: 20),
+            searchButton.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
     

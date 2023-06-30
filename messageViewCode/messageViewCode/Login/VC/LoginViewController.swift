@@ -56,6 +56,9 @@ extension LoginViewController: LoginScreenProtocol {
 //            alert.addAction(UIAlertAction(title: "OK", style: .default))
 //            present(alert, animated: true)
 //        }
+        let navigation = UINavigationController(rootViewController: HomeViewController())
+        navigation.modalPresentationStyle = .fullScreen
+        present(navigation, animated: true, completion: nil)
     }
     
     func actionRegisterButton() {

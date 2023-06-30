@@ -21,10 +21,19 @@ extension UIView {
         ])
     }
     
+    func edges() {
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: topAnchor),
+            self.leadingAnchor.constraint(equalTo: leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: trailingAnchor),
+            self.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
     func setRounded() {
-       let radius = CGRectGetWidth(self.frame) / 2
-       self.layer.cornerRadius = radius
-       self.layer.masksToBounds = true
+        let radius = CGRectGetWidth(self.frame) / 2
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
     }
 }
 

@@ -14,7 +14,7 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.topAnchor.constraint(equalTo: view.topAnchor)
+            self.topAnchor.constraint(equalTo: view.topAnchor),
             self.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             self.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             self.bottomAnchor.constraint(equalTo: view.bottomAnchor)

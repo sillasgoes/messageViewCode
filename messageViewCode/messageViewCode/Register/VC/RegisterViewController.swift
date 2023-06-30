@@ -12,6 +12,7 @@ class RegisterViewController: UIViewController {
     
     var registerScreen: RegisterScreen?
     var auth: Auth?
+    var firestore: Firestore?
     var alert: Alert?
     
     override func loadView() {
@@ -24,6 +25,7 @@ class RegisterViewController: UIViewController {
         registerScreen?.configTextFieldDelegate(delegate: self)
         registerScreen?.delegate(delegate: self)
         auth = Auth.auth()
+        firestore = Firestore.firestore()
         alert = Alert(controller: self)
     }
 }
@@ -52,6 +54,12 @@ extension RegisterViewController: RegisterScreenProtocol {
                     self.alert?.getAlert(title: "Atenção", message: "Digite novamente email e senha")
                     return
                 }
+                
+                self.firestore?.collection("usuarios").document(result.user.uid).setData([
+                    "nome": registerScreen.getName(),
+                    "email": registerScreen.getEmail(),
+                    "id": result.user.uid
+                ])
                 
                 self.alert?.getAlert(title: "Sucesso", message: "Registro efetuado com sucesso") {
                     self.navigationController?.popViewController(animated: true)

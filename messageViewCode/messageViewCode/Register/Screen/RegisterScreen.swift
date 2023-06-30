@@ -110,6 +110,10 @@ class RegisterScreen: UIView {
         configConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("Error")
+    }
+    
     public func configTextFieldDelegate(delegate: UITextFieldDelegate) {
         nameTextField.delegate = delegate
         emailTextField.delegate = delegate
@@ -129,8 +133,8 @@ class RegisterScreen: UIView {
         delegate?.actionRegisterButton(.success)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("Error")
+    func getName() -> String {
+        return nameTextField.text ?? ""
     }
     
     func getEmail() -> String {
@@ -139,6 +143,12 @@ class RegisterScreen: UIView {
     
     func getPassword() -> String {
         return passwordTextField.text ?? ""
+    }
+    
+    var getN: String {
+        get {
+            return self.nameTextField.text ?? ""
+        }
     }
     
     private func setupView() {
@@ -155,6 +165,7 @@ class RegisterScreen: UIView {
     func configConstraints() {
         configImageAddUserConstraints()
         configBackButtonConstraints()
+        configNameTextFieldConstraints()
         configEmailTextFieldConstraints()
         configPasswordTextFieldConstraints()
         configRegisterButtonConstraints()

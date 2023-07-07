@@ -48,8 +48,9 @@ extension RegisterViewController: RegisterScreenProtocol {
         if type == .success {
             
             guard let registerScreen = registerScreen else { return }
-
+            
             auth?.createUser(withEmail: registerScreen.getEmail(), password: registerScreen.getPassword()) { result, error in
+                
                 guard let result = result else  {
                     self.alert?.getAlert(title: "Atenção", message: "Digite novamente email e senha")
                     return

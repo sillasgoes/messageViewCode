@@ -89,6 +89,7 @@ class NavView: UIView {
     lazy var contactButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .black
         button.setImage(UIImage(named: "group")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.addTarget(self, action: #selector(tappedContactButton), for: .touchUpInside)
         return button

@@ -36,29 +36,29 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginScreenProtocol {
     
     func actionLoginButton(_ action: TypeAction) {
-//        if action == .success {
-//
-//            guard let loginScreen = loginScreen else { return }
-//
-//            auth?.signIn(withEmail: loginScreen.getEmail(), password: loginScreen.getPassword()) { result, error in
-//
-//                guard let result = result else {
-//                    self.alert?.getAlert(title: "Atenção", message: "Dados incorretos, verique e tente novamente")
-//                    return
-//                }
-//
-//                print("Resultado do login \(result.description)")
-//
-//            }
-//
-//        } else {
-//            let alert = UIAlertController(title: "Atenção", message: "Preencha os dois campos", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default))
-//            present(alert, animated: true)
-//        }
-        let navigation = UINavigationController(rootViewController: HomeViewController())
-        navigation.modalPresentationStyle = .fullScreen
-        present(navigation, animated: true, completion: nil)
+        
+        if action == .success {
+
+            guard let loginScreen = loginScreen else { return }
+
+            auth?.signIn(withEmail: loginScreen.getEmail(), password: loginScreen.getPassword()) { result, error in
+
+                guard let _ = result else {
+                    self.alert?.getAlert(title: "Atenção", message: "Dados incorretos, verique e tente novamente")
+                    return
+                }
+
+                let navigation = UINavigationController(rootViewController: HomeViewController())
+                navigation.modalPresentationStyle = .fullScreen
+                self.present(navigation, animated: true, completion: nil)
+
+            }
+
+        } else {
+            let alert = UIAlertController(title: "Atenção", message: "Preencha os dois campos", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
     }
     
     func actionRegisterButton() {

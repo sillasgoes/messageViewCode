@@ -60,6 +60,7 @@ class LoginScreen: UIView {
         tf.placeholder = "Digite seu email"
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.borderStyle = .roundedRect
+        tf.text = "SG@SG.COM.BR"
         tf.layer.cornerRadius = 7.5
         tf.layer.borderWidth = 1
         tf.layer.borderColor =  UIColor(red: 3/255, green: 58/255, blue: 51/255, alpha: 1.0).cgColor
@@ -77,6 +78,7 @@ class LoginScreen: UIView {
         tf.placeholder = "Digite sua senha"
         tf.keyboardType = .default
         tf.borderStyle = .roundedRect
+        tf.text = "12345678"
         tf.layer.cornerRadius = 7.5
         tf.layer.borderWidth = 1
         tf.layer.borderColor =  UIColor(red: 3/255, green: 58/255, blue: 51/255, alpha: 1.0).cgColor
@@ -139,7 +141,7 @@ class LoginScreen: UIView {
             delegate?.actionLoginButton(.failure)
             return
         }
-        
+
         delegate?.actionLoginButton(.success)
     }
     

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9808DA812A58480C003A84B0 /* MessageAllModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9808DA802A58480C003A84B0 /* MessageAllModel.swift */; };
+		9808DA842A584DD7003A84B0 /* MessageLastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9808DA832A584DD7003A84B0 /* MessageLastCollectionViewCell.swift */; };
+		9808DA862A58511D003A84B0 /* MessageDetailCollectionViewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9808DA852A58511D003A84B0 /* MessageDetailCollectionViewCellCollectionViewCell.swift */; };
+		9808DA892A585A3F003A84B0 /* ContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9808DA882A585A3F003A84B0 /* ContactController.swift */; };
 		98C0A8382A4E342C00FA29BB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0A8302A4E342C00FA29BB /* RegisterViewController.swift */; };
 		98C0A8392A4E342C00FA29BB /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0A8322A4E342C00FA29BB /* RegisterScreen.swift */; };
 		98C0A83A2A4E342C00FA29BB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0A8352A4E342C00FA29BB /* LoginViewController.swift */; };
@@ -58,6 +62,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9808DA802A58480C003A84B0 /* MessageAllModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAllModel.swift; sourceTree = "<group>"; };
+		9808DA832A584DD7003A84B0 /* MessageLastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLastCollectionViewCell.swift; sourceTree = "<group>"; };
+		9808DA852A58511D003A84B0 /* MessageDetailCollectionViewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailCollectionViewCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		9808DA882A585A3F003A84B0 /* ContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactController.swift; sourceTree = "<group>"; };
 		98C0A8302A4E342C00FA29BB /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		98C0A8322A4E342C00FA29BB /* RegisterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		98C0A8352A4E342C00FA29BB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +128,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9808DA7F2A5847FB003A84B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9808DA802A58480C003A84B0 /* MessageAllModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9808DA822A584DA0003A84B0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9808DA832A584DD7003A84B0 /* MessageLastCollectionViewCell.swift */,
+				9808DA852A58511D003A84B0 /* MessageDetailCollectionViewCellCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9808DA872A585A2D003A84B0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9808DA882A585A3F003A84B0 /* ContactController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		98C0A82E2A4E342C00FA29BB /* Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +237,8 @@
 		98C7A60A2A4F404C00FA1201 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9808DA872A585A2D003A84B0 /* Controller */,
+				9808DA822A584DA0003A84B0 /* Cell */,
 				98C7A6112A4F415A00FA1201 /* NavView */,
 				98C7A60C2A4F405300FA1201 /* Screen */,
 				98C7A60B2A4F404F00FA1201 /* VC */,
@@ -258,6 +293,7 @@
 		98D760202A4E2ABC00A9738D /* messageViewCode */ = {
 			isa = PBXGroup;
 			children = (
+				9808DA7F2A5847FB003A84B0 /* Model */,
 				98C7A60A2A4F404C00FA1201 /* Home */,
 				98C0A84A2A4E364B00FA29BB /* Utils */,
 				98C0A83C2A4E34FE00FA29BB /* Alert */,
@@ -437,15 +473,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9808DA842A584DD7003A84B0 /* MessageLastCollectionViewCell.swift in Sources */,
 				98C0A86C2A4E431F00FA29BB /* Extension+String.swift in Sources */,
 				98C0A83A2A4E342C00FA29BB /* LoginViewController.swift in Sources */,
 				98C0A8392A4E342C00FA29BB /* RegisterScreen.swift in Sources */,
 				98C0A85C2A4E407500FA29BB /* Custom.swift in Sources */,
 				98C0A85A2A4E3CA500FA29BB /* Extension+UIView.swift in Sources */,
+				9808DA892A585A3F003A84B0 /* ContactController.swift in Sources */,
 				98C7A60E2A4F406B00FA1201 /* HomeViewController.swift in Sources */,
 				98C7A6102A4F407F00FA1201 /* HomeScreen.swift in Sources */,
+				9808DA812A58480C003A84B0 /* MessageAllModel.swift in Sources */,
 				98C0A84E2A4E364B00FA29BB /* Utils.swift in Sources */,
 				98C7A6132A4F417F00FA1201 /* NavView.swift in Sources */,
+				9808DA862A58511D003A84B0 /* MessageDetailCollectionViewCellCollectionViewCell.swift in Sources */,
 				98D760262A4E2ABC00A9738D /* ViewController.swift in Sources */,
 				98D760222A4E2ABC00A9738D /* AppDelegate.swift in Sources */,
 				98C0A83B2A4E342C00FA29BB /* LoginScreen.swift in Sources */,

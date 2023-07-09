@@ -18,6 +18,12 @@ class HomeViewController: UIViewController {
     var alert: Alert?
     var screen: HomeScren?
     
+    var contact: ContactController?
+    var listContact: [Contact] = []
+    var listConvesation: [Conversation] = []
+    var conversationListener: ListenerRegistration?
+    
+    
     override func loadView() {
         let screen = HomeScren()
         view = screen
@@ -30,6 +36,8 @@ class HomeViewController: UIViewController {
         configHomeView()
         configCollectionView()
         configAlert()
+        configIdentifierFirebase()
+        configContact()
     }
     
     private func configHomeView() {
@@ -42,6 +50,65 @@ class HomeViewController: UIViewController {
     
     private func configAlert() {
         alert = Alert(controller: self)
+    }
+    
+    private func configIdentifierFirebase() {
+        auth = Auth.auth()
+        db = Firestore.firestore()
+        
+        if let currentUser = auth?.currentUser {
+            self.idUserLogged = currentUser.uid
+            self.emailUserLogged = currentUser.email
+        }
+    }
+    
+    private func configContact() {
+        self.contact = ContactController()
+        contact?.delegate = self
+    }
+    
+    func addListenerRecoverConversations() {
+        
+        guard let idUserLogged = auth?.currentUser?.uid else { return }
+        
+        conversationListener = db?.collection("conversas").document(idUserLogged).collection("ultimas_conversas").addSnapshotListener({ querySnapshot, error in
+            
+            if error == nil {
+                self.listConvesation.removeAll()
+                
+                if let snapshot = querySnapshot {
+                    for document in snapshot.documents {
+                        let data = document.data()
+                        self.listConvesation.append(Conversation(dictonary: data))
+                    }
+                }
+                
+                self.screen?.reloadCollectionView()
+            }
+        })
+    }
+    
+    func getContact() {
+        listContact.removeAll()
+        db?.collection("usuarios")
+            .document(idUserLogged ?? "")
+            .collection("contatos")
+            .getDocuments(completion: { snapshotResult, error in
+                
+                if error != nil {
+                    print("Error get contact")
+                    return
+                }
+                
+                if let snapshot = snapshotResult {
+                    for document in snapshot.documents {
+                        let dados = document.data()
+                        self.listContact.append(Contact(dictonary: dados))
+                        
+                        self.screen?.reloadCollectionView()
+                    }
+                }
+            })
     }
 }
 
@@ -69,8 +136,24 @@ extension HomeViewController: NavViewProtocol {
         switch type {
         case .contact:
             screenContact = true
+            getContact()
         case .conversation:
             screenContact = false
+            // Recuperar conversas
+            self.screen?.reloadCollectionView()
+        }
+    }
+}
+
+extension HomeViewController: ContactProtocol {
+    
+    func alertStateError(title: String, message: String) {
+        alert?.getAlert(title: title, message: message)
+    }
+    
+    func successContact() {
+        alert?.getAlert(title: "Success", message: "Save contact with success") {
+            print("Success")
         }
     }
 }

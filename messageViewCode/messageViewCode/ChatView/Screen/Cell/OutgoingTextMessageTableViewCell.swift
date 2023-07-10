@@ -31,28 +31,27 @@ class OutgoingTextMessageTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.addElemented()
-        self.setupContraints()
+        addElemented()
+        setupContraints()
     }
     
     func addElemented(){
-        self.addSubview(self.myMessageView)
-        self.myMessageView.addSubview(self.messageTextLabel)
-        self.isSelected = false
+        addSubview(self.myMessageView)
+        myMessageView.addSubview(self.messageTextLabel)
+        isSelected = false
     }
-    
     
     func setupContraints(){
         
         NSLayoutConstraint.activate([
-            self.myMessageView.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -20),
-            self.myMessageView.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
-            self.myMessageView.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
+            myMessageView.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -20),
+            myMessageView.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
+            myMessageView.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
             
-            self.messageTextLabel.leadingAnchor.constraint(equalTo: self.myMessageView.leadingAnchor,constant: 15),
-            self.messageTextLabel.topAnchor.constraint(equalTo: self.myMessageView.topAnchor,constant: 15),
-            self.messageTextLabel.bottomAnchor.constraint(equalTo: self.myMessageView.bottomAnchor,constant: -15),
-            self.messageTextLabel.trailingAnchor.constraint(equalTo: self.myMessageView.trailingAnchor,constant: -15),
+            messageTextLabel.leadingAnchor.constraint(equalTo: self.myMessageView.leadingAnchor,constant: 15),
+            messageTextLabel.topAnchor.constraint(equalTo: self.myMessageView.topAnchor,constant: 15),
+            messageTextLabel.bottomAnchor.constraint(equalTo: self.myMessageView.bottomAnchor,constant: -15),
+            messageTextLabel.trailingAnchor.constraint(equalTo: self.myMessageView.trailingAnchor,constant: -15),
         ])
         
     }

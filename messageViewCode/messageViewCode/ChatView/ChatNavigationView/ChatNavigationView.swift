@@ -73,7 +73,7 @@ class ChatNavigationView: UIView {
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 26
-        image.image = UIImage(named: "image-perfil")
+        image.image = UIImage(named: "imagem-perfil")
         return image
     }()
     

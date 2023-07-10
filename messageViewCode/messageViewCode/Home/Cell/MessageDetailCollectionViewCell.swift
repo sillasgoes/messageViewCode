@@ -17,7 +17,7 @@ class MessageDetailCollectionViewCell: UICollectionViewCell {
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         image.layer.cornerRadius = 26
-        image.image = UIImage(systemName: "image-perfil")
+        image.image = UIImage(systemName: "imagem-perfil")
         return image
     }()
     

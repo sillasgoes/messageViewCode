@@ -12,8 +12,8 @@ class Message {
     var idUser: String?
     
     init(dictonary: [String: Any]) {
-        texto = dictonary["text"] as? String
-        idUser = dictonary["idUser"] as? String
+        texto = dictonary["texto"] as? String
+        idUser = dictonary["idUsuario"] as? String
     }
 }
 
@@ -23,9 +23,9 @@ class Conversation {
     var idRecipient: String?
     
     init(dictonary: [String: Any]) {
-        nome = dictonary["nome"] as? String
-        lastMessage = dictonary["lastMessage"] as? String
-        idRecipient = dictonary["idRecipient"] as? String
+        nome = dictonary["nomeUsuario"] as? String
+        lastMessage = dictonary["ultimaMensagem"] as? String
+        idRecipient = dictonary["idDestinatario"] as? String
     }
 }
 
@@ -35,7 +35,7 @@ class User {
     
     init(dictonary: [String: Any]) {
         nome = dictonary["nome"] as? String
-        email = dictonary["noemailme"] as? String
+        email = dictonary["email"] as? String
     }
 }
 

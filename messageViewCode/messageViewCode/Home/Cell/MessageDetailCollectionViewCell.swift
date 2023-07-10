@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MessageDetailCollectionViewCellCollectionViewCell: UICollectionViewCell {
+class MessageDetailCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "MessageDetailCollectionViewCellCollectionViewCell"
+    static let identifier = "MessageDetailCollectionViewCell"
     
     lazy var imageView: UIImageView = {
         let image = UIImageView()

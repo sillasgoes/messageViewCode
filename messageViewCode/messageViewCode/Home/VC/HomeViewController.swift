@@ -23,9 +23,8 @@ class HomeViewController: UIViewController {
     var listConvesation: [Conversation] = []
     var conversationListener: ListenerRegistration?
     
-    
     override func loadView() {
-        let screen = HomeScren()
+        screen = HomeScren()
         view = screen
     }
     
@@ -38,10 +37,11 @@ class HomeViewController: UIViewController {
         configAlert()
         configIdentifierFirebase()
         configContact()
+        addListenerRecoverConversations()
     }
     
     private func configHomeView() {
-        screen?.navView.delegate(delegate: self)
+        screen?.navView.navViewDelegate(delegate: self)
     }
     
     private func configCollectionView() {
@@ -104,9 +104,8 @@ class HomeViewController: UIViewController {
                     for document in snapshot.documents {
                         let dados = document.data()
                         self.listContact.append(Contact(dictonary: dados))
-                        
-                        self.screen?.reloadCollectionView()
                     }
+                    self.screen?.reloadCollectionView()
                 }
             })
     }
@@ -115,15 +114,52 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        0
+        if screenContact ?? false {
+            return listContact.count + 1
+        } else {
+            return listConvesation.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell(frame: CGRect.zero)
+        if self.screenContact ?? false {
+            
+            if indexPath.row == listContact.count {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageLastCollectionViewCell.identifier, for: indexPath)
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageDetailCollectionViewCell.identifier, for: indexPath)
+                as? MessageDetailCollectionViewCell
+                cell?.setupViewContact(contact: listContact[indexPath.row])
+                return cell ?? UICollectionViewCell()
+            }
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageDetailCollectionViewCell.identifier, for: indexPath) as? MessageDetailCollectionViewCell
+            cell?.setupViewConversation(conversation: listConvesation[indexPath.row])
+            return cell ?? UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        
+        if screenContact ?? false {
+            if indexPath.row == listContact.count {
+                self.alert?.addContact { value in
+                    self.contact?.addContact(email: value, emailUserLogged: self.emailUserLogged ?? "", idUser: self.idUserLogged ?? "")
+                }
+            } else {
+                let viewController: ChatViewController = ChatViewController()
+                viewController.contact = self.listContact[indexPath.row]
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
+        } else {
+            
+            let viewController: ChatViewController = ChatViewController()
+            let data = self.listConvesation[indexPath.row]
+            let contact: Contact = Contact(id: data.idRecipient ?? "", nome: data.nome ?? "")
+            viewController.contact = contact
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -137,10 +173,11 @@ extension HomeViewController: NavViewProtocol {
         case .contact:
             screenContact = true
             getContact()
+            conversationListener?.remove()
         case .conversation:
             screenContact = false
-            // Recuperar conversas
-            self.screen?.reloadCollectionView()
+            addListenerRecoverConversations()
+            screen?.reloadCollectionView()
         }
     }
 }

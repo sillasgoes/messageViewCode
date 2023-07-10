@@ -18,9 +18,9 @@ protocol NavViewProtocol: AnyObject {
 
 class NavView: UIView {
     
-    weak private var delegate: NavViewProtocol?
+    private weak var delegate: NavViewProtocol?
     
-    func delegate(delegate: NavViewProtocol) {
+    public func navViewDelegate(delegate: NavViewProtocol) {
         self.delegate = delegate
     }
     

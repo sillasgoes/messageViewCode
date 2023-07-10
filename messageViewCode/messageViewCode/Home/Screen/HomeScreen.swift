@@ -26,7 +26,7 @@ class HomeScren: UIView {
         cv.backgroundColor = .clear
         cv.delaysContentTouches = false
         cv.register(MessageLastCollectionViewCell.self, forCellWithReuseIdentifier: MessageLastCollectionViewCell.identifier)
-        cv.register(MessageDetailCollectionViewCellCollectionViewCell.self, forCellWithReuseIdentifier: MessageDetailCollectionViewCellCollectionViewCell.identifier)
+        cv.register(MessageDetailCollectionViewCell.self, forCellWithReuseIdentifier: MessageDetailCollectionViewCell.identifier)
         let layout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = .vertical
         cv.setCollectionViewLayout(layout, animated: false)
